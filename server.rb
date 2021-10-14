@@ -17,7 +17,8 @@ get '/media/:id' do
   body 'Welcome to RubyService media ' + params[:id]
 end
 
-post '/medias' do
+#vaccepts jason -- look how it is done
+post '/medias', :provides=>:json do
   puts request.env["CONTENT_TYPE"]
   puts request.body.read
   status 200
