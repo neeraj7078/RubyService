@@ -75,4 +75,24 @@ puts "table_get::end"
 return results
 end
 
+def media_table_update (mediaID, inputData)
+
+puts "table_update::start"
+
+puts "mediaID " + mediaID
+puts "inputData " + inputData
+
+
+client = get_mysql_client();
+
+inputJson = JSON.parse(inputData)
+puts "parsed input : " + inputJson.to_s
+
+updateQuery = "UPDATE cms_database.MEDIAS SET `name` = '#{inputJson['name']}', `productionID`= '#{inputJson['productionID']}' WHERE `ID` = '#{mediaID}';"
+puts "updateQuery " + updateQuery
+
+client.query(updateQuery);
+puts "table_update::end"
+end
+
 

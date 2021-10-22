@@ -3,32 +3,12 @@
 require 'sinatra'
 require 'json'
 require_relative 'DB/projects_queries.rb'
-require_relative 'DB/media_queries.rb'
-require 'uri'
+require_relative 'media.rb'
 
 get '/' do
   status 200
-  body 'Welcome to RubyService!'
+  body 'Welcome to Media Service!'
 end
-
-get '/media' do
-  status 300
-  body 'Welcome to RubyService media!'
-end
-
-get '/media/:id' do
-  status 400
-  body 'Welcome to RubyService media ' + params[:id]
-end
-
-#accepts jason -- look how it is done
-post '/medias', :provides=>:json do
-  puts request.env["CONTENT_TYPE"]
-  puts request.body.read
-  status 200
-  return 'Create a media'
-end
-
 
 post '/project/create', :provides=>:json do
  puts request.env["CONTENT_TYPE"]
