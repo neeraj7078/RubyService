@@ -11,9 +11,9 @@ dcxID = "dcxID_" + random_suffix
 insertBody = '{"productionID" : "' + productionID + '", "name" : "' + name + '", "dcxID" : "' + dcxID +'"}'
 
 #puts "insertBody : " + insertBody
-project_table_insert (insertBody)
+projectID = project_table_insert (insertBody)
 
-return productionID
+return productionID, projectID
 end
 
 def media_insert_row(productionID)
@@ -28,11 +28,29 @@ return media_table_insert (insertBody)
 
 end
 
+def project_update_row(projectID)
+string_length = 3
+random_suffix = rand(36**string_length).to_s(36)
+name = "name_" + random_suffix
+dcxID = "dcxID_" + random_suffix
+
+insertBody = '{"name" : "' + name + '", "dcxID" : "' + dcxID +'"}'
+
+#puts "insertBody : " + insertBody
+project_table_update_projectID(projectID, insertBody)
+end
+
+productionID, projectID = project_insert_row()
+project_table_get_productionID(productionID)
+project_update_row(projectID)
+project_table_get_productionID(productionID)
+=begin
 project_table_get_all()
 
-productionID = project_insert_row()
+productionID, projectID = project_insert_row()
 
-project_table_get(productionID)
+project_table_get_productionID(productionID)
+project_table_get_projectID(projectID)
 
 project_table_get_all()
 
@@ -51,8 +69,11 @@ media_table_get(mediaID)
 media_table_get_all()
 
 
-project_table_delete(productionID)
+project_table_delete_productionID(productionID)
 
-project_table_get(productionID)
+project_table_get_productionID(productionID)
+project_table_get_projectID(projectID)
 
 project_table_get_all()
+=end
+
