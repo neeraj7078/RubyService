@@ -6,6 +6,10 @@ gem 'puma', '5.5.0'
 gem 'reel', '0.6.1'
 gem 'http', '5.0.4'
 gem 'webrick', '1.7.0'
+gem 'json', '2.6.0'
+gem 'mysql2', '0.5.3'
+
+
 
 
 
